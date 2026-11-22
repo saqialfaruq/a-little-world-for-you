@@ -66,6 +66,9 @@ body.intro .nav{opacity:0;pointer-events:none}
 .round[aria-pressed=false]{opacity:.55;text-decoration:line-through}
 
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition-duration:.01ms!important}}
+/* beri ruang untuk badge Netlify di kanan bawah (HP) */
+.nav{justify-content:center!important;gap:1.2rem;padding-bottom:calc(5.5rem + env(safe-area-inset-bottom))!important}
+.screen{padding-bottom:11rem!important}
 
 /* galeri */
 .stack{display:flex;gap:1.2rem;overflow-x:auto;scroll-snap-type:x mandatory;width:100%;padding:1.4rem calc(50% - min(35vw,130px));scrollbar-width:none}
