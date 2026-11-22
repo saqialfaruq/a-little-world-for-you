@@ -3,7 +3,10 @@
   const target = new Date(C.unlockAt).getTime();
   const gate = on => { document.getElementById('stage').inert = on; document.querySelector('.nav').inert = on; };
 
-  if (Date.now() >= target || new URLSearchParams(location.search).has('preview')) { lock.remove(); return; }
+  const q = new URLSearchParams(location.search);
+  const local = ['localhost', '127.0.0.1', ''].includes(location.hostname);
+  const ok = (local && q.has('preview')) || (C.previewKey && q.get('preview') === C.previewKey);
+  if (Date.now() >= target || ok) { lock.remove(); return; }
   gate(true);
 
   const pad = n => String(n).padStart(2, '0');
