@@ -4,7 +4,11 @@ window.SITE = {
   from: "SaqiAlfarq",         // dipakai sebagai tanda tangan default
 
   settings: {
+<<<<<<< HEAD
     unlockAt: "2026-11-25T07:00:00+07:00", // +07:00 WIB, +08:00 WITA, +09:00 WIT
+=======
+    unlockAt: "2026-11-25T01:00:00+07:00", // +07:00 WIB, +08:00 WITA, +09:00 WIT
+>>>>>>> 0365fcb9d2e61e8af38ecaa213bfe7a3c0714e1b
     previewKey: "",                         // kata rahasia untuk tes di situs live: link/?preview=KATA (kosongkan sebelum hari H)
     music: "assets/audio/bgm.mp3",
     photoDir: "assets/images/memories/"
@@ -65,6 +69,7 @@ window.SITE = {
   bucket: {
     title: "Kapan-kapan, kita…",
     placeholder: "Tambah impian kita",
+<<<<<<< HEAD
     items: [
      ["Jalan-jalan tanpa tujuan", false],
       ["Jajan sepuasnya tapi kamu yang traktir hihii", false],
@@ -75,11 +80,22 @@ window.SITE = {
   things: {
     title: "Hal-hal kecil",
     items: ["Caramu bercerita sampai ingin selalu ditemani.", "Tawamu yang bikin aku senang.", "Caramu peduli sama hal-hal kecil.", "Kamu yang selalu ada walau jauh.", "Kamu yang selalu nurunin ego demi aku.", "Mengirim pesan singkat di sela kesibukan kamuu."]
+=======
+    items: ["Jalan-jalan tanpa tujuan", 
+    "Jajan sepuasnya tapi kamu yang traktir hihii", 
+    "Nonton film pilihanmu",
+    "Pelukan sampe warga memisahkan"]
+  },
+  things: {
+    title: "Hal-hal kecil",
+    items: ["Caramu bercerita sampai lupa waktu.", "Tawamu yang bikin obrolan terasa ringan.", "Caramu peduli sama hal-hal kecil.", "Kamu yang selalu ada walau jauh.", "Kamu, apa adanya."]
+>>>>>>> 0365fcb9d2e61e8af38ecaa213bfe7a3c0714e1b
   },
 
   // Foto tampil satu per satu; baca semua "line" berurutan sebagai satu kalimat.
   finale: {
     moments: [
+<<<<<<< HEAD
       { photo: "foto21.jpeg", line: "Dari obrolan pertama yang sederhana," },
       { photo: "roblox2.png", line: "sampai hal-hal kecil yang jadi kebiasaan," },
       { photo: "foto.jpeg", line: "kamu pelan-pelan jadi bagian dari hari-hariku." }
@@ -87,6 +103,15 @@ window.SITE = {
     title: "Selamat ulang tahun, My Sweety Cookie.",
     body: ["Terima kasih sudah ada, dari jauh sekalipun."],
     sign: "Dari jauh, SaqiAlfarq",
+=======
+      { photo: "", line: "Dari obrolan pertama yang sederhana," },
+      { photo: "", line: "sampai hal-hal kecil yang jadi kebiasaan," },
+      { photo: "", line: "kamu pelan-pelan jadi bagian dari hari-hariku." }
+    ],
+    title: "Selamat ulang tahun, Novarizka.",
+    body: ["Terima kasih sudah ada, dari jauh sekalipun."],
+    sign: "Aqila",
+>>>>>>> 0365fcb9d2e61e8af38ecaa213bfe7a3c0714e1b
     replay: "Putar ulang"
   }
 };
