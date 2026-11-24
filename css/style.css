@@ -1,0 +1,164 @@
+/* ===== 1. Token ===== */
+:root{
+  --cream:#FBF5EC;--pink:#F6D5DA;--rose:#C98B97;--deep:#9C5565;--lav:#D9CCEB;--sage:#B7C4A8;
+  --ink:#5A4650;--muted:#7C6572;--paper:#FFFAF2;
+  --serif:"Cormorant Garamond",Georgia,serif;--sans:"Nunito",system-ui,sans-serif;--hand:"Caveat",cursive;
+  --shadow:0 10px 28px rgba(156,85,101,.18);--ease:cubic-bezier(.22,.61,.36,1);
+  --badge-space:4.5rem; /* ruang untuk badge Netlify di HP; ubah ke 1rem jika badge dimatikan */
+}
+
+/* ===== 2. Dasar & latar ===== */
+*{box-sizing:border-box;margin:0}
+html,body{height:100%}
+body{background:var(--cream);color:var(--ink);font:400 1.05rem/1.6 var(--sans);overflow:hidden;transition:color 1s}
+body::before{content:"";position:fixed;inset:0;background:radial-gradient(90% 70% at 50% 40%,#7A5565,#3F2F3B);opacity:0;transition:opacity 1.4s}
+body.dusk{color:var(--cream)}
+body.dusk::before{opacity:1}
+.bg{position:fixed;inset:0;overflow:hidden;pointer-events:none;transition:opacity 1.4s}
+body.dusk .bg{opacity:0}
+.bg i{position:absolute;border-radius:50%;filter:blur(50px);opacity:.55;animation:drift 18s ease-in-out infinite alternate}
+.bg i:nth-child(1){width:46vmax;height:46vmax;left:-14vmax;top:-12vmax;background:var(--pink)}
+.bg i:nth-child(2){width:40vmax;height:40vmax;right:-12vmax;bottom:-10vmax;background:var(--lav);animation-delay:-6s}
+.bg i:nth-child(3){width:24vmax;height:24vmax;right:10vmax;top:18vmax;background:#DCE6D2;opacity:.4;animation-delay:-12s}
+@keyframes drift{to{translate:4vmax 3vmax}}
+.paper{position:fixed;inset:0;pointer-events:none;opacity:.45;mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .55 0 0 0 0 .45 0 0 0 0 .45 0 0 0 .14 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>")}
+[hidden]{display:none!important}
+:focus-visible{outline:3px solid var(--deep);outline-offset:3px}
+h1,h2{font-family:var(--serif);font-weight:600;line-height:1.08;letter-spacing:-.01em;max-width:14ch}
+h1{font-size:clamp(2.6rem,12vw,4rem)}
+h2{font-size:clamp(1.9rem,8vw,2.6rem)}
+.hand{font:500 1.7rem/1.2 var(--hand);color:var(--deep)}
+body.dusk .hand{color:var(--pink)}
+.hint,.count{color:var(--muted);font-size:.92rem}
+body.dusk .hint{color:rgba(251,245,236,.7)}
+
+/* ===== 3. Kerangka aplikasi: header | layar | footer (tidak ada elemen yang saling menimpa) ===== */
+.app{position:fixed;top:0;bottom:0;left:0;right:0;width:100%;max-width:480px;margin:0 auto;display:flex;flex-direction:column;
+  padding:env(safe-area-inset-top) 1.25rem calc(var(--badge-space) + env(safe-area-inset-bottom))}
+.top{flex:none;height:56px;display:flex;align-items:center;gap:1rem;transition:opacity .5s}
+#bar{flex:1;display:flex;gap:4px;transition:opacity .5s}
+#bar i{flex:1;max-width:40px;height:3px;border-radius:3px;background:var(--ink);opacity:.18;transition:opacity .4s}
+#bar i.on{opacity:.75}
+body.intro #bar{opacity:0}
+#stage{position:relative;flex:1;min-height:0}
+.foot{flex:none;display:flex;justify-content:space-between;align-items:center;padding:.8rem 0 .4rem;transition:opacity .5s}
+body.intro .foot{opacity:0;pointer-events:none}
+@media (min-width:600px){
+  .app{top:1.5rem;bottom:1.5rem;padding-bottom:1rem;padding-inline:2rem;border-radius:28px;background:rgba(255,250,242,.55);
+    border:1px solid rgba(201,139,151,.25);box-shadow:var(--shadow)}
+}
+
+/* ===== 4. Tombol ===== */
+.solid,.ghost{font:600 .9rem var(--sans);letter-spacing:.02em;border:0;cursor:pointer;transition:transform .25s var(--ease),opacity .25s}
+.solid{padding:.7rem 1.6rem;border-radius:10px;background:var(--ink);color:var(--cream)}
+.ghost{background:none;color:var(--muted);padding:.6rem .2rem}
+.solid:active{transform:scale(.96)}
+.solid:disabled{opacity:.25;pointer-events:none}
+body.dusk .solid{background:var(--cream);color:#3F2F3B}
+body.dusk .ghost{color:rgba(251,245,236,.7)}
+body.dusk #bar i{background:var(--cream)}
+.music{flex:none;width:40px;height:40px;border-radius:50%;border:0;background:rgba(255,250,242,.9);color:var(--deep);font-size:1.15rem;cursor:pointer;box-shadow:0 2px 8px rgba(90,70,80,.15)}
+.music[aria-pressed=false]{opacity:.55;text-decoration:line-through}
+
+/* ===== 5. Layar & transisi ===== */
+.screen{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;gap:1.1rem;overflow-y:auto;overflow-x:hidden;
+  padding:.5rem .25rem 1rem;text-align:center;scrollbar-width:none;opacity:0;visibility:hidden;transform:translateY(8px);
+  transition:opacity .6s var(--ease),transform .6s var(--ease),visibility 0s .6s}
+.screen::-webkit-scrollbar{display:none}
+.screen.active{opacity:1;visibility:visible;transform:none;transition-delay:0s}
+.screen>:first-child{margin-top:auto}
+.screen>:last-child{margin-bottom:auto}
+.screen p{max-width:30ch}
+@keyframes rise{from{opacity:0;transform:translateY(14px)}}
+.screen.active>*{animation:rise .8s var(--ease) both}
+.screen.active>:nth-child(2){animation-delay:.1s}
+.screen.active>:nth-child(3){animation-delay:.2s}
+.screen.active>:nth-child(4){animation-delay:.3s}
+.screen.active>:nth-child(5){animation-delay:.4s}
+
+/* ===== 6. Welcome: amplop ===== */
+.env{position:relative;flex:none;width:min(76%,290px);aspect-ratio:3/2;border:0;background:none;cursor:pointer;perspective:700px;margin-top:.6rem}
+.env i{position:absolute;pointer-events:none;transition:transform .8s var(--ease),opacity .4s}
+.eb{inset:0;background:var(--lav);border-radius:6px 6px 10px 10px;box-shadow:var(--shadow)}
+.ec{left:7%;right:7%;top:8%;height:84%;background:var(--paper);border-radius:4px;display:grid;place-items:center;box-shadow:0 2px 8px rgba(90,70,80,.18);font-style:normal;z-index:1}
+.ec em{font:italic 500 1.3rem var(--serif);color:var(--ink)}
+.ef{inset:0;background:var(--pink);clip-path:polygon(0 0,50% 56%,100% 0,100% 100%,0 100%);border-radius:6px 6px 10px 10px;z-index:3}
+.el{left:0;right:0;top:0;height:58%;background:#EBC3CB;clip-path:polygon(0 0,100% 0,50% 100%);transform-origin:top;z-index:4}
+.seal{left:50%;top:56%;translate:-50% -50%;width:38px;height:38px;border-radius:50%;background:var(--deep);color:var(--cream);display:grid;place-items:center;z-index:5;font-style:normal;box-shadow:0 2px 6px rgba(0,0,0,.2)}
+.env:not(.open){animation:bob 3.2s ease-in-out infinite}
+@keyframes bob{50%{translate:0 -6px}}
+.env.open .seal{opacity:0}
+.env.open .el{transform:rotateX(180deg);z-index:0;transition:transform .8s var(--ease),z-index 0s .35s}
+.env.open .ec{transform:translateY(-62%);transition-delay:.55s;transition-duration:.9s}
+
+/* ===== 7. Birthday: kue ===== */
+.cake{flex:none;height:min(27dvh,215px);width:auto;overflow:visible}
+.candle{cursor:pointer}
+.flame{fill:#F7C873;transform-box:fill-box;transform-origin:50% 100%;animation:flick .5s ease-in-out infinite alternate}
+.candle.out .flame{opacity:0;transition:opacity .4s}
+@keyframes flick{to{transform:scale(.88,1.1) rotate(4deg)}}
+
+/* ===== 8. Galeri ===== */
+.stack{flex:none;display:flex;gap:1.1rem;overflow-x:auto;scroll-snap-type:x mandatory;width:100%;padding:1rem calc(50% - min(34vw,125px));scrollbar-width:none}
+.stack::-webkit-scrollbar{display:none}
+.pol{position:relative;flex:0 0 min(68vw,250px);aspect-ratio:3/4;max-height:52dvh;border:0;background:none;scroll-snap-align:center;rotate:var(--t);perspective:800px;cursor:pointer;text-align:left;color:var(--ink)}
+.pf,.pb{position:absolute;inset:0;backface-visibility:hidden;transition:transform .7s var(--ease);background:var(--paper);padding:.7rem .7rem 1rem;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:.35rem}
+.pb{transform:rotateY(180deg);justify-content:center;text-align:center;font:italic 500 1.2rem/1.45 var(--serif)}
+.pol.flip .pf{transform:rotateY(-180deg)}
+.pol.flip .pb{transform:none}
+.pf img,.ph{flex:1;min-height:0;width:100%;object-fit:cover;background:linear-gradient(135deg,var(--pink),var(--lav))}
+.pf b{font:500 1.35rem var(--hand)}
+.pf small{color:var(--muted)}
+.tape{position:absolute;top:-10px;left:50%;translate:-50%;width:70px;height:20px;background:rgba(183,196,168,.75);rotate:-3deg}
+
+/* ===== 9. Surat ===== */
+.sheet{flex:none;width:100%;padding:1.5rem 1.3rem;text-align:left;background:var(--paper);border-radius:6px;box-shadow:var(--shadow);font:500 1.18rem/1.75 var(--serif)}
+.sheet p{max-width:none}
+.sheet p+p{margin-top:.9rem}
+.screen.active .sheet p{animation:rise .9s var(--ease) both;animation-delay:calc(var(--n)*.6s + .4s)}
+.sheet .sign{font:500 1.8rem var(--hand);color:var(--deep);text-align:right}
+
+/* ===== 10. Bucket list ===== */
+.list{flex:none;list-style:none;padding:0;width:100%;display:grid;gap:.5rem;text-align:left}
+.list li{display:flex;gap:.7rem;align-items:center;background:rgba(255,250,242,.8);padding:.5rem .8rem;border-radius:14px}
+.list button{border:0;background:none;font-size:1.5rem;color:var(--deep);cursor:pointer}
+.list .done span{text-decoration:line-through;opacity:.6}
+.add{flex:none;display:flex;gap:.5rem;width:100%}
+.add input{flex:1;min-width:0;border:1.5px solid var(--rose);border-radius:999px;padding:.6rem 1rem;background:var(--paper);font:inherit;color:var(--ink)}
+
+/* ===== 11. Hal-hal kecil ===== */
+.grid{flex:none;display:grid;grid-template-columns:repeat(2,1fr);gap:.7rem;width:100%;padding:.3rem}
+.card{min-height:92px;border:0;border-radius:16px;background:var(--lav);font:500 1.08rem/1.35 var(--serif);color:var(--ink);padding:.7rem;cursor:pointer;box-shadow:var(--shadow);rotate:var(--r)}
+.card:nth-child(3n){background:var(--sage)}
+.card:nth-child(3n+1){background:var(--pink)}
+.cf{font-size:1.9rem;color:var(--deep)}
+.cb{display:none}
+.card.open .cf{display:none}
+.card.open .cb{display:block}
+
+/* ===== 12. Penutup ===== */
+.reel{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none}
+.moment{position:absolute;width:100%;display:flex;flex-direction:column;align-items:center;gap:1rem;opacity:0;transform:translateY(14px);transition:opacity 1s,transform 1s}
+.moment.on{opacity:1;transform:none}
+.moment .photo{height:min(44dvh,320px);aspect-ratio:3/4;background:var(--paper);padding:.6rem .6rem 1.8rem;box-shadow:0 12px 32px rgba(0,0,0,.35);rotate:var(--t)}
+.moment .photo img,.moment .photo .ph{display:block;width:100%;height:100%;object-fit:cover}
+.moment p{font:italic 500 1.3rem/1.5 var(--serif);max-width:24ch}
+.closing{flex:none;display:flex;flex-direction:column;align-items:center;gap:1.1rem;visibility:hidden}
+.closing.show{visibility:visible}
+.closing.show>*{animation:rise 1.1s var(--ease) both}
+.closing.show>:nth-child(2){animation-delay:.9s}
+.closing.show>:nth-child(3){animation-delay:1.8s}
+.closing.show>:nth-child(4){animation-delay:2.6s}
+.fp{font:500 1.3rem/1.55 var(--serif)}
+
+/* ===== 13. Kunci countdown ===== */
+.lock{position:fixed;inset:0;z-index:20;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.2rem;padding:1.5rem;text-align:center;background:var(--cream);transition:opacity 1.2s var(--ease)}
+.lock.gone{opacity:0;pointer-events:none}
+.lock p{max-width:28ch}
+.cd{display:flex;gap:.6rem}
+.cd div{min-width:62px;padding:.8rem .4rem .6rem;background:var(--paper);border-radius:14px;box-shadow:var(--shadow)}
+.cd b{display:block;font:600 1.9rem/1.1 var(--serif);font-variant-numeric:tabular-nums}
+.cd small{color:var(--muted);font-size:.85rem}
+
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition-duration:.01ms!important}}
