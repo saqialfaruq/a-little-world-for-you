@@ -65,26 +65,28 @@ window.SITE = {
   bucket: {
     title: "Kapan-kapan, kita…",
     placeholder: "Tambah impian kita",
-    items: ["Jalan-jalan tanpa tujuan", 
-    "Jajan sepuasnya tapi kamu yang traktir hihii", 
-    "Nonton film pilihanmu",
-    "Pelukan sampe warga memisahkan"]
+    items: [
+     ["Jalan-jalan tanpa tujuan", false],
+      ["Jajan sepuasnya tapi kamu yang traktir hihii", false],
+      ["Nonton film pilihanmu", false],
+      ["Pelukan sampe warga memisahkan", false]
+  ]
   },
   things: {
     title: "Hal-hal kecil",
-    items: ["Caramu bercerita sampai lupa waktu.", "Tawamu yang bikin obrolan terasa ringan.", "Caramu peduli sama hal-hal kecil.", "Kamu yang selalu ada walau jauh.", "Kamu, apa adanya."]
+    items: ["Caramu bercerita sampai ingin selalu ditemani.", "Tawamu yang bikin aku senang.", "Caramu peduli sama hal-hal kecil.", "Kamu yang selalu ada walau jauh.", "Kamu yang selalu nurunin ego demi aku.", "Mengirim pesan singkat di sela kesibukan kamuu."]
   },
 
   // Foto tampil satu per satu; baca semua "line" berurutan sebagai satu kalimat.
   finale: {
     moments: [
-      { photo: "", line: "Dari obrolan pertama yang sederhana," },
-      { photo: "", line: "sampai hal-hal kecil yang jadi kebiasaan," },
-      { photo: "", line: "kamu pelan-pelan jadi bagian dari hari-hariku." }
+      { photo: "foto21.jpeg", line: "Dari obrolan pertama yang sederhana," },
+      { photo: "roblox2.png", line: "sampai hal-hal kecil yang jadi kebiasaan," },
+      { photo: "foto.jpeg", line: "kamu pelan-pelan jadi bagian dari hari-hariku." }
     ],
-    title: "Selamat ulang tahun, Novarizka.",
+    title: "Selamat ulang tahun, My Sweety Cookie.",
     body: ["Terima kasih sudah ada, dari jauh sekalipun."],
-    sign: "Aqila",
+    sign: "Dari jauh, SaqiAlfarq",
     replay: "Putar ulang"
   }
 };
