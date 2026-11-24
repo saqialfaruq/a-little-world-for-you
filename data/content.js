@@ -11,7 +11,7 @@ window.CONTENT = {
 
   // Hitung mundur: situs terkunci sampai waktu ini.
   // +07:00 = WIB (ganti +08:00 untuk WITA, +09:00 untuk WIT). Untuk tes, buka index.html?preview
-  unlockAt: "2026-11-25T05:00:00+07:00",
+  unlockAt: "2026-11-25T07:00:00+07:00",
   previewKey: "ganti-dengan-kata-rahasiamu",
   lockTitle: "Sebentar lagi.",
   lockText: "Dunia kecil ini baru terbuka tepat di hari ulang tahunmu.",
