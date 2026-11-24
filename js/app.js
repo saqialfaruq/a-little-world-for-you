@@ -51,15 +51,9 @@
       html: () => { const L = S.letter; return `<div class="sheet">${[L.greet, ...L.body, L.sign].map((t, n, a) => `<p class="${n === a.length - 1 ? 'sign' : ''}" style="--n:${n}">${esc(t)}</p>`).join('')}</div>`; } },
 
     { id: 'bucket',
-<<<<<<< HEAD
       html: () => `<h2>${esc(S.bucket.title)}</h2><ul class="list"></ul><form class="add"><input maxlength="60" placeholder="${esc(S.bucket.placeholder)}" aria-label="${esc(S.bucket.placeholder)}"><button class="solid">Tambah</button></form>`,
       init(el) {
         const K = 'a-little-world-for-you', ul = $('.list', el);
-=======
-      html: () => `<h2>${esc(S.bucket.title)}</h2><ul class="list"></ul><form class="add"><input maxlength="60" placeholder="${esc(S.bucket.placeholder)}" aria-label="${esc(S.bucket.placeholder)}"><button class="solid">Tambah</button><button type="button" class="reset">Reset</button></form>`,
-      init(el) {
-        const K = 'lw-bucket-v2', ul = $('.list', el);
->>>>>>> 0365fcb9d2e61e8af38ecaa213bfe7a3c0714e1b
         let items = store.get(K, null) || S.bucket.items.map(([t, d]) => ({ t, d }));
         const draw = () => {
           ul.innerHTML = '';
@@ -77,14 +71,6 @@
           const i = $('input', el), v = i.value.trim();
           if (v) { items.push({ t: v, d: false }); i.value = ''; store.set(K, items); draw(); }
         };
-<<<<<<< HEAD
-=======
-        $('.reset', el).onclick = () => {
-          localStorage.removeItem(K);
-          items = S.bucket.items.map(([t, d]) => ({ t, d }));
-          draw();
-        };
->>>>>>> 0365fcb9d2e61e8af38ecaa213bfe7a3c0714e1b
         draw();
       } },
 
