@@ -4,7 +4,7 @@ window.SITE = {
   from: "SaqiAlfarq",         // dipakai sebagai tanda tangan default
 
   settings: {
-    unlockAt: "2026-11-25T07:00:00+07:00", // +07:00 WIB, +08:00 WITA, +09:00 WIT
+    unlockAt: "2026-11-25T02:00:00+07:00", // +07:00 WIB, +08:00 WITA, +09:00 WIT
     previewKey: "",                         // kata rahasia untuk tes di situs live: link/?preview=KATA (kosongkan sebelum hari H)
     music: "assets/audio/bgm.mp3",
     photoDir: "assets/images/memories/"
